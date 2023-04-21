@@ -40,6 +40,7 @@ class Server:
         return self.__indexed_dataset
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
+        """Summary dictionaryof current pagination"""
         assert index < len(self.indexed_dataset())
         mydata = self.indexed_dataset()
         n = page_size
