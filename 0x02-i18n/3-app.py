@@ -3,22 +3,28 @@
 """
 from flask import Flask, render_template, request
 from flask_babel import Babel, gettext
-from config import Config
+
+
+class Config:
+    """class Config for app config"""
+    LANGUAGES = ['en', 'fr']
+    BABEL_DEFAULT_LOCALE = 'en'
+    BABEL_DEFAULT_TIMEZONE = 'UTC'
 
 
 app = Flask(__name__)
-app.config.from_object(Config)
+app.config.from_object('1-app.Config')
 babel = Babel(app)
 
 
 @babel.localeselector
-def get_locale() -> any:
+def get_locale():
     """returns the best language choice for user"""
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 @app.route('/', methods=['GET'])
-def index() -> any:
+def index():
     """home test page"""
     return render_template('3-index.html', gettext=gettext)
 

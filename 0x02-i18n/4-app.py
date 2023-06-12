@@ -3,16 +3,15 @@
 """
 from flask import Flask, render_template, request
 from flask_babel import Babel, gettext
-from config import Config
 
 
 app = Flask(__name__)
-app.config.from_object(Config)
+app.config.from_object('1-app.Config')
 babel = Babel(app)
 
 
 @babel.localeselector
-def get_locale() -> any:
+def get_locale():
     """returns the best language choice for user"""
     lang = request.args.get('locale')
     if lang in app.config['LANGUAGES']:

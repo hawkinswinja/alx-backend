@@ -2,9 +2,7 @@
 """app module
 """
 from flask import Flask, render_template, request, g
-from flask_babel import Babel, gettext
-from typing import Dict
-from config import Config
+from flask_babel import Babel
 
 
 users = {
@@ -15,12 +13,12 @@ users = {
 }
 
 app = Flask(__name__)
-app.config.from_object(Config)
+app.config.from_object('1-app.Config')
 babel = Babel(app)
 
 
 @babel.localeselector
-def get_locale() -> any:
+def get_locale():
     """returns the best language choice for user"""
     lang = request.args.get('locale')
     if lang in app.config['LANGUAGES']:
@@ -31,18 +29,18 @@ def get_locale() -> any:
 
 
 @app.before_request
-def before_request() -> None:
+def before_request():
     """retrieve current user"""
     g.user = get_user()
 
 
 @app.route('/', methods=['GET'])
-def index() -> any:
+def index():
     """home test page"""
-    return render_template('6-index.html', gettext=gettext, user=g.user)
+    return render_template('6-index.html', user=g.user)
 
 
-def get_user() -> Dict | None:
+def get_user():
     """returns a mock user login"""
     try:
         user_id = int(request.args.get('login_as'))

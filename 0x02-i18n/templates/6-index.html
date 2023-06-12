@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{{ gettext('home_title') }}</title>
+        <title>{{ _('home_title') }}</title>
     </head>
     <body>
         <header>
-            <h1>{{ gettext('home_header') }}</h1>
+            <h1>{{ _('home_header') }}</h1>
         </header>
         {% if user %}
-            <h2>{{ gettext('logged_in_as', username=user.name) }}</h2>
+            <h2>{{ _('logged_in_as', username=user.name) }}</h2>
         {% else %}
-            <h2>{{ gettext('not_logged_in') }}</h2>
+            <h2>{{ _('not_logged_in') }}</h2>
         {% endif %}
     </body>
 </html>
