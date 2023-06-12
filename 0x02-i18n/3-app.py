@@ -2,14 +2,7 @@
 """app module
 """
 from flask import Flask, render_template, request
-from flask_babel import Babel, gettext
-
-
-class Config:
-    """class Config for app config"""
-    LANGUAGES = ['en', 'fr']
-    BABEL_DEFAULT_LOCALE = 'en'
-    BABEL_DEFAULT_TIMEZONE = 'UTC'
+from flask_babel import Babel
 
 
 app = Flask(__name__)
@@ -26,7 +19,7 @@ def get_locale():
 @app.route('/', methods=['GET'])
 def index():
     """home test page"""
-    return render_template('3-index.html', gettext=gettext)
+    return render_template('3-index.html')
 
 
 if __name__ == '__main__':
